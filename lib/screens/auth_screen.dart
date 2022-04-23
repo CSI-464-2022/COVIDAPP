@@ -13,11 +13,7 @@ class AuthScreen extends StatelessWidget {
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const ProfileScreen(
-            providerConfigs: [
-              EmailProviderConfiguration(),
-            ],
-          );
+          return const HomePage();
         } else {
           return  SignInScreen(
             headerBuilder: (context, constraints, _) {

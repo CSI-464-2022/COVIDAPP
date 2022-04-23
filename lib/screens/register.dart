@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:onlineconsultation/components/background.dart';
-import 'package:onlineconsultation/screens/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -170,23 +169,6 @@ class SignUpPageState extends State<RegisterScreen> {
                       }
                     }),
               ),
-              Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                child: GestureDetector(
-                  onTap: () => {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()))
-                  },
-                  child: Text(
-                    "Already Have an Account? Sign in",
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2661FA)),
-                  ),
-                ),
-              )
             ],
           ),
         ),
