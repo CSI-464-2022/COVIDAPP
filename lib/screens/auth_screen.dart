@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:onlineconsultation/screens/register.dart';
 import 'package:onlineconsultation/screens/screens.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -13,9 +14,10 @@ class AuthScreen extends StatelessWidget {
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const HomePage();
+          return (snapshot.data!.emailVerified )?const HomePage(): RegistrationScreen(uid:snapshot.data!.uid, );
         } else {
-          return  SignInScreen(
+          return SignInScreen(
+            showAuthActionSwitch: true,
             headerBuilder: (context, constraints, _) {
               return Padding(
                 padding: const EdgeInsets.all(20),

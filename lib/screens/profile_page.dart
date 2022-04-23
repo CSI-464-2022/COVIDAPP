@@ -11,8 +11,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
-  final CollectionReference users = FirebaseFirestore.instance.collection('users');
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
   final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -31,18 +31,22 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  Future<Users> getProfileInfo() async{
-    return await users.doc(_auth.currentUser!.uid)
-        .withConverter<Users>(fromFirestore: (snapshots, _) => Users.fromJson(snapshots.data()!),
-      toFirestore: (covidUser, _) => covidUser.toJson(),).get().then((value){
-      return Users.fromJson(value.data()!.toJson());
-    });
-  }
 
-  Future<String?> getCurrentUser() async{
+  Future<String?> getCurrentUser() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     return currentUser!.email;
   }
+
+  Future<Users> getProfileInfo() async {
+    return await users
+        .doc(_auth.currentUser!.uid)
+        .withConverter<Users>(
+          fromFirestore: (snapshots, _) => Users.fromJson(snapshots.data()!),
+          toFirestore: (covidUser, _) => covidUser.toJson(),
+        )
+        .get()
+        .then((value) {
+      return Users.fromJson(value.data()!.toJson());
+    });
+  }
 }
-
-

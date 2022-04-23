@@ -12,29 +12,62 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
       body: Center(
         child: Column(
           children: [
             ElevatedButton(
-            child: const Text('Go to Profile'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilePage()),
-              );
-
-            },),
+              child: const Text('Go to Profile'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Admin Screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AdminScreen()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Patient Screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PatientScreen()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Doctor Screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DoctorScreen()),
+                );
+              },
+            ),
             TextButton(onPressed: logout, child: const Text("Logout"))
           ],
-        ),),
+        ),
+      ),
     );
   }
 
- void logout() {
-    FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => const AuthScreen(),
-        )));
- }
+  void logout() {
+    FirebaseAuth.instance
+        .signOut()
+        .then((value) => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => const AuthScreen(),
+            )));
+  }
 }
